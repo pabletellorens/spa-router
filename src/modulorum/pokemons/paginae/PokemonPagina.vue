@@ -24,5 +24,5 @@ interface Props {
   id: number;
 }
 
-const props = defineProps<Props>();
+defineProps<Props>();
 </script>
