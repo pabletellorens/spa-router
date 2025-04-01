@@ -1,6 +1,7 @@
 import { createRouter, createWebHashHistory } from 'vue-router';
 import DomusPagina from '../DomusPagina.vue';
 import NotFound404 from '@/modulorum/ordinarius/paginae/NotFound404.vue';
+import estPermititurGuard from '@/modulorum/auth/guards/est-permititur.guard';
 
 export const router = createRouter({
   history: createWebHashHistory(import.meta.env.BASE_URL),
@@ -33,6 +34,9 @@ export const router = createRouter({
         {
           path: '/pokemon/:id',
           name: 'pokemon',
+
+          beforeEnter: [estPermititurGuard],
+
           props: (route) => {
             const id = Number(route.params.id);
             return isNaN(id) ? { id: 1 } : { id };
